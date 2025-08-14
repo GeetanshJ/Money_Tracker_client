@@ -66,7 +66,7 @@ const Login = () => {
 
     return (
         <div>
-            <Navbar />
+            <Navbar isLogin={isLogin}/>
             <div className="auth-page">
                 <div className={`form-panel ${isLogin ? "right" : "left"}`}>
                     {!isLogin ? (
