@@ -3,7 +3,6 @@ import { NavLink ,useLocation} from "react-router-dom"
 import "./Navbar.css"
 const Navbar = ({ isLogin }) => {
     const location = useLocation();
-    console.log(location.pathname)
     return (
         <nav>
             <div>Money Tracker</div>

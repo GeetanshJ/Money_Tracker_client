@@ -1,23 +1,12 @@
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import "./Login.css";
 import Navbar from "../../components/Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../App.js";
-import { useAuth } from "../../components/Auth/AuthContext.js";
-import { checkAuth } from "../../components/Auth/AuthContext";
 
 const Login = () => {
-        useEffect(() => {
-          checkAuth();
-          return () => {
-            
-          }
-        }, [])
     const navigate = useNavigate();
-    const {isAuthenticated} = useAuth();
-    if(isAuthenticated) navigate("/home");
-
     const [isLogin, setIsLogin] = useState(false);
     const [message, setMessage] = useState("");
 
@@ -51,7 +40,7 @@ const Login = () => {
             };
 
         try {
-            const res = await axios.post(`${API_URL}${endpoint}`, payload);
+            const res = await axios.post(`${API_URL}${endpoint}`, payload,{withCredentials:true});
             setMessage(res.data.message || "");
 
             if (res.data.message === "User Logged") {
