@@ -3,7 +3,7 @@ A simple and secure Money Tracking Application to manage income, expenses, and b
 Built with React (frontend), Express.js (backend), and MySQL (database).
 Authentication is powered by JWT stored in HttpOnly cookies for better security.
 
-### 🔗 Live Demo: Money Tracker App
+### 🔗 Live Demo: (https://money-tracker-client-tau.vercel.app/)
 
 ## 🚀 Features
 `User Authentication (Login / Signup with JWT + HttpOnly cookies)`
