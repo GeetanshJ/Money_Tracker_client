@@ -1,0 +1,58 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #007CF0, #407ff5);
+  padding: 12px 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 15px rgba(0, 223, 216, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav > div {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: white;
+  letter-spacing: 1.2px;
+  user-select: none;
+}
+
+.nav-link {
+  padding: 8px 14px;
+  margin-left: 20px;
+  color: #b3e5fc;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #e0f7fa;
+}
+
+.active {
+  color: #1aff00;
+  background-color: rgba(255, 64, 0, 0.15);
+  box-shadow: 0 0 8px #00ffea;
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-wrap: wrap;
+    padding: 10px 20px;
+  }
+  nav > div {
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .nav-link {
+    margin-left: 8px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+}
