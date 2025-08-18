@@ -3,16 +3,19 @@ import "./AboutUs.css";
 import Navbar from "../../components/Navbar";
 import img1 from "./profile.png";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../components/Auth/AuthContext";
+import { useAuth } from "../../Context/Auth/AuthContext";
 const AboutUs = () => {
     const navigate = useNavigate();
-    const { isAuthenticated ,checkAuthFromServer} = useAuth();
+    const { isAuthenticated, checkAuthFromServer } = useAuth();
     useEffect(() => {
         checkAuthFromServer();
     }, [])
 
-    if (!isAuthenticated) navigate("/login");
-
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate("/");
+        }
+    }, [isAuthenticated]);
     return (
 
         <div> <Navbar />

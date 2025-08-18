@@ -3,22 +3,26 @@ import Home from './pages/Home/Home';
 import AboutUs from './pages/AboutUs/AboutUs';
 import Profile from './pages/Profile/Profile';
 import Login from './pages/Login/Login';
+import "react-toastify/dist/ReactToastify.css";
+
 const API_URL = "http://localhost:4000/api";
 
 function App() {
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path='/home' element={<Home />}>Home</Route>
-          <Route path='/about' element={<AboutUs />}>About Us</Route>
-          <Route path='/' element={<Login />}>Login/SignUp</Route>
-          <Route path='/profile' element={<Profile />}>Profile</Route>
+<>
+  <div className="App">
+    <BrowserRouter>
+      <Routes>
+        <Route path='/home' element={<Home />} />
+        <Route path='/about' element={<AboutUs />} />
+        <Route path='/' element={<Login />} />
+        <Route path='/profile' element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
+  </div>
+</>
 
-        </Routes>
-      </BrowserRouter>
-    </div>
   );
 }
 

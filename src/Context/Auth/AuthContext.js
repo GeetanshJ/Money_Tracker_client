@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../../App";
 
@@ -10,16 +10,21 @@ export function AuthProvider({ children }) {
 
   const checkAuthFromServer = async () => {
     try {
-      const res = await axios.post(`${API_URL}/auth/check`,{}, { withCredentials    : true });
+      const res = await axios.post(`${API_URL}/auth/check`, {}, { withCredentials: true });
       setIsAuthenticated(res.data.authenticated);
-      setUser(res.data.user);
+      setUser(res.data.user.user);
+
     } catch {
       setIsAuthenticated(false);
     }
   };
+  
+  useEffect(() => {
+    checkAuthFromServer();
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, checkAuthFromServer,user }}>
+    <AuthContext.Provider value={{ isAuthenticated, checkAuthFromServer, user, setIsAuthenticated, setUser }}>
       {children}
     </AuthContext.Provider>
   );

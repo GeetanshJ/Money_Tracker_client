@@ -4,11 +4,11 @@ import Navbar from "../../components/Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../App.js";
+import { toast, ToastContainer } from "react-toastify"
 
 const Login = () => {
     const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(false);
-    const [message, setMessage] = useState("");
 
     const [formData, setFormData] = useState({
         signup_name: "",
@@ -40,22 +40,20 @@ const Login = () => {
             };
 
         try {
-            const res = await axios.post(`${API_URL}${endpoint}`, payload,{withCredentials:true});
-            setMessage(res.data.message || "");
-
+            const res = await axios.post(`${API_URL}${endpoint}`, payload, { withCredentials: true });
+            toast.error(res.data.message, { autoClose: 3000, closeButton: false })
             if (res.data.message === "User Logged") {
                 navigate("/home");
             }
         } catch (error) {
-            setMessage(error.response?.data?.message || "Something went wrong");
-        } finally {
-            setTimeout(() => setMessage(""), 3000);
+            toast.error(error.response.data.message, { autoClose: 3000, closeButton: false })
         }
     };
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
+            <ToastContainer position="top-right" autoClose={5000}/>
             <div className="auth-page">
                 <div className={`form-panel ${isLogin ? "right" : "left"}`}>
                     {!isLogin ? (
@@ -83,7 +81,6 @@ const Login = () => {
                                 placeholder="Password"
                             />
                             <button onClick={authSubmit}>Sign Up</button>
-                            <p style={{ color: "red" }}>{message}</p>
                             <p>
                                 Already have an account?{" "}
                                 <span onClick={() => setIsLogin(true)}>I want to login</span>
@@ -107,7 +104,6 @@ const Login = () => {
                                 placeholder="Password"
                             />
                             <button onClick={authSubmit}>Login</button>
-                            <p style={{ color: "red" }}>{message}</p>
                             <p>
                                 Don't have an account?{" "}
                                 <span onClick={() => setIsLogin(false)}>I want to sign up</span>
