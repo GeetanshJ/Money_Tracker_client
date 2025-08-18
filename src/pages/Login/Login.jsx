@@ -41,7 +41,7 @@ const Login = () => {
 
         try {
             const res = await axios.post(`${API_URL}${endpoint}`, payload, { withCredentials: true });
-            toast.error(res.data.message, { autoClose: 3000, closeButton: false })
+            toast.success(res.data.message, { autoClose: 3000, closeButton: false })
             if (res.data.message === "User Logged") {
                 navigate("/home");
             }
